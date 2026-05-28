@@ -18,7 +18,6 @@
   --muted:#5a6a85;
   --accent:#00d4ff;
   --accent2:#0090cc;
-  --accent3:#40e0ff;
   --green:#00ff88;
   --orange:#ff6b00;
   --yellow:#ffd100;
@@ -28,78 +27,83 @@
 html{scroll-behavior:smooth;cursor:none}
 body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:16px;line-height:1.6;overflow-x:hidden}
 
-#cursor{position:fixed;width:20px;height:20px;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform 0.15s}
+#cursor{position:fixed;width:20px;height:20px;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
 #cursor::before{content:'';position:absolute;top:50%;left:0;right:0;height:1.5px;background:var(--accent);transform:translateY(-50%);box-shadow:0 0 6px var(--accent)}
 #cursor::after{content:'';position:absolute;left:50%;top:0;bottom:0;width:1.5px;background:var(--accent);transform:translateX(-50%);box-shadow:0 0 6px var(--accent)}
 #cursor-dot{position:fixed;width:4px;height:4px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:10000;transform:translate(-50%,-50%);box-shadow:0 0 8px var(--accent)}
 #cursor-ring{position:fixed;width:40px;height:40px;border:1px solid rgba(0,212,255,0.3);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width 0.3s,height 0.3s}
-body.cursor-hover #cursor{transform:translate(-50%,-50%) scale(1.6)}
 body.cursor-hover #cursor-ring{width:60px;height:60px;border-color:rgba(0,212,255,0.5)}
 
 nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.25rem 4rem;display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(24px);background:rgba(5,8,15,0.8);border-bottom:1px solid rgba(0,212,255,0.07)}
-.nav-logo{font-family:var(--font-display);font-size:1.15rem;font-weight:800;color:var(--accent);text-shadow:0 0 20px rgba(0,212,255,0.4)}
+.nav-logo{font-family:var(--font-display);font-size:1rem;font-weight:800;color:var(--muted);letter-spacing:0.05em}
 .nav-links{display:flex;gap:2.5rem;list-style:none}
 .nav-links a{color:var(--muted);text-decoration:none;font-size:0.875rem;transition:color 0.2s}
 .nav-links a:hover{color:var(--accent)}
-.nav-cta{background:transparent;color:var(--accent);padding:0.55rem 1.4rem;border-radius:6px;font-size:0.82rem;font-weight:600;text-decoration:none;border:1px solid var(--accent);cursor:none;transition:background 0.2s,box-shadow 0.2s,transform 0.2s;box-shadow:0 0 12px rgba(0,212,255,0.15)}
-.nav-cta:hover{background:rgba(0,212,255,0.1);box-shadow:0 0 24px rgba(0,212,255,0.3);transform:translateY(-1px)}
+.nav-cta{background:transparent;color:var(--accent);padding:0.55rem 1.4rem;border-radius:6px;font-size:0.82rem;font-weight:600;border:1px solid var(--accent);cursor:none;transition:background 0.2s,box-shadow 0.2s;box-shadow:0 0 12px rgba(0,212,255,0.15)}
+.nav-cta:hover{background:rgba(0,212,255,0.1);box-shadow:0 0 24px rgba(0,212,255,0.3)}
 
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:0 4rem;position:relative;overflow:hidden;padding-bottom:8rem}
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 2rem;position:relative;overflow:hidden}
 .hero-bg{position:absolute;inset:0;pointer-events:none;overflow:hidden}
-.orb{position:absolute;border-radius:50%;filter:blur(100px);opacity:0.15}
-.orb1{width:700px;height:700px;background:#0090cc;top:-200px;right:-150px;animation:driftOrb 12s ease-in-out infinite alternate}
-.orb2{width:500px;height:500px;background:#00ff88;bottom:-150px;left:-100px;animation:driftOrb 16s ease-in-out infinite alternate-reverse}
-.orb3{width:350px;height:350px;background:#ff6b00;top:35%;left:35%;opacity:0.08;animation:driftOrb 9s ease-in-out infinite alternate}
-@keyframes driftOrb{from{transform:translate(0,0)}to{transform:translate(50px,35px)}}
-.grid-overlay{position:absolute;inset:0;background-image:linear-gradient(rgba(0,212,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.025) 1px,transparent 1px);background-size:64px 64px}
+.orb{position:absolute;border-radius:50%;filter:blur(120px);opacity:0.12}
+.orb1{width:800px;height:800px;background:#0090cc;top:-300px;right:-200px;animation:drift 14s ease-in-out infinite alternate}
+.orb2{width:600px;height:600px;background:#00ff88;bottom:-200px;left:-200px;animation:drift 18s ease-in-out infinite alternate-reverse}
+.orb3{width:400px;height:400px;background:#ff6b00;top:30%;left:30%;opacity:0.06;animation:drift 10s ease-in-out infinite alternate}
+@keyframes drift{from{transform:translate(0,0)}to{transform:translate(60px,40px)}}
+.grid-overlay{position:absolute;inset:0;background-image:linear-gradient(rgba(0,212,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.02) 1px,transparent 1px);background-size:64px 64px}
 
-.hero-role{display:inline-flex;align-items:center;gap:0.75rem;margin-bottom:2rem;width:fit-content}
-.role-badge{padding:0.35rem 0.9rem;border-radius:4px;font-size:0.72rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase}
-.badge-swe{background:rgba(0,212,255,0.1);border:1px solid rgba(0,212,255,0.3);color:var(--accent)}
-.badge-da{background:rgba(0,255,136,0.08);border:1px solid rgba(0,255,136,0.25);color:var(--green)}
-.role-dot{width:4px;height:4px;border-radius:50%;background:var(--muted)}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(0,212,255,0.06);border:1px solid rgba(0,212,255,0.15);color:var(--accent);padding:0.4rem 1.2rem;border-radius:100px;font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:2.5rem;animation:fadeUp 0.8s 0.1s both}
+.hero-eyebrow-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite;box-shadow:0 0 8px var(--green)}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
 
-.hero-title{font-family:var(--font-display);font-size:clamp(3.5rem,8vw,7.5rem);font-weight:800;line-height:0.93;letter-spacing:-0.03em;margin-bottom:2rem}
-.hero-title .line{display:block;overflow:hidden}
-.hero-title .line span{display:inline-block;animation:slideUp 0.9s cubic-bezier(0.16,1,0.3,1) both}
-.line:nth-child(1) span{animation-delay:0.1s}
-.line:nth-child(2) span{animation-delay:0.22s}
-.line:nth-child(3) span{animation-delay:0.34s}
-@keyframes slideUp{from{transform:translateY(110%)}to{transform:translateY(0)}}
-.grad-text{background:linear-gradient(90deg,var(--accent) 0%,var(--green) 60%,var(--yellow) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-name{font-family:var(--font-display);font-size:clamp(4rem,12vw,10rem);font-weight:800;line-height:0.9;letter-spacing:-0.04em;margin-bottom:1.5rem;animation:fadeUp 0.9s 0.2s both}
+.hero-name .first{display:block;color:var(--text)}
+.hero-name .last{display:block;background:linear-gradient(90deg,var(--accent),var(--green) 50%,var(--yellow));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 
-.hero-subtitle{font-size:1.05rem;color:var(--muted);max-width:560px;line-height:1.8;font-weight:300;margin-bottom:3rem;animation:fadeUp 1s 0.7s both}
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero-roles{display:flex;align-items:center;justify-content:center;gap:1rem;margin-bottom:2rem;animation:fadeUp 0.9s 0.35s both}
+.hero-role-text{font-family:var(--font-display);font-size:clamp(1rem,2.5vw,1.6rem);font-weight:600;letter-spacing:-0.01em}
+.role-cyan{color:var(--accent)}
+.role-divider{width:5px;height:5px;border-radius:50%;background:var(--muted)}
+.role-green{color:var(--green)}
 
-.hero-actions{display:flex;gap:1rem;margin-bottom:5rem;animation:fadeUp 1s 0.9s both;position:relative;z-index:2}
-.btn-primary{background:var(--accent);color:#05080f;padding:0.9rem 2.2rem;border-radius:6px;font-size:0.9rem;font-weight:700;text-decoration:none;border:none;cursor:none;transition:transform 0.2s,box-shadow 0.2s;display:inline-flex;align-items:center;gap:0.5rem}
-.btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,212,255,0.35)}
-.btn-outline{color:var(--text);padding:0.9rem 2.2rem;border-radius:6px;font-size:0.9rem;font-weight:500;text-decoration:none;border:1px solid rgba(232,238,248,0.2);background:rgba(232,238,248,0.05);transition:border-color 0.2s,transform 0.2s,background 0.2s;cursor:none}
-.btn-outline:hover{border-color:var(--accent);transform:translateY(-3px);background:rgba(0,212,255,0.06);color:var(--accent)}
+.hero-desc{font-size:1.05rem;color:var(--muted);max-width:520px;line-height:1.8;font-weight:300;margin-bottom:3rem;animation:fadeUp 0.9s 0.5s both}
 
-.hero-stats{display:flex;gap:3.5rem;animation:fadeUp 1s 1.1s both;position:relative;z-index:2}
-.stat-num{font-family:var(--font-display);font-size:2.4rem;font-weight:800;display:inline;color:var(--accent);text-shadow:0 0 30px rgba(0,212,255,0.3)}
-.stat-suf{font-family:var(--font-display);font-size:2.4rem;font-weight:800;color:var(--accent);text-shadow:0 0 30px rgba(0,212,255,0.3)}
+.hero-actions{display:flex;gap:1rem;justify-content:center;animation:fadeUp 0.9s 0.65s both}
+.btn-primary{background:var(--accent);color:#05080f;padding:0.95rem 2.5rem;border-radius:6px;font-size:0.95rem;font-weight:700;text-decoration:none;border:none;cursor:none;transition:transform 0.2s,box-shadow 0.2s;display:inline-flex;align-items:center;gap:0.5rem}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,212,255,0.4)}
+.btn-ghost{color:var(--text);padding:0.95rem 2.5rem;border-radius:6px;font-size:0.95rem;font-weight:500;text-decoration:none;border:1px solid rgba(232,238,248,0.15);background:rgba(232,238,248,0.04);transition:all 0.2s;cursor:none}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent);background:rgba(0,212,255,0.05)}
+
+.hero-stats{display:flex;gap:4rem;justify-content:center;margin-top:5rem;padding-top:3rem;border-top:1px solid var(--border);animation:fadeUp 0.9s 0.8s both;position:relative;z-index:2}
+.stat{text-align:center}
+.stat-num{font-family:var(--font-display);font-size:2.2rem;font-weight:800;color:var(--accent);text-shadow:0 0 30px rgba(0,212,255,0.3);display:inline}
+.stat-suf{font-family:var(--font-display);font-size:2.2rem;font-weight:800;color:var(--accent);text-shadow:0 0 30px rgba(0,212,255,0.3)}
 .stat-label{font-size:0.68rem;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;margin-top:4px;display:block}
 
-.scroll-hint{position:absolute;bottom:2.5rem;right:4rem;display:flex;align-items:center;gap:0.75rem;color:var(--muted);font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;animation:fadeUp 1s 1.3s both;z-index:2}
-.scroll-line{width:40px;height:1px;background:linear-gradient(90deg,transparent,var(--muted))}
+.scroll-indicator{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:0.5rem;color:var(--muted);font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;animation:fadeUp 0.9s 1s both}
+.scroll-arrow{width:1px;height:40px;background:linear-gradient(180deg,transparent,var(--accent));animation:scrollPulse 2s ease-in-out infinite}
+@keyframes scrollPulse{0%,100%{opacity:0.3;transform:scaleY(0.8)}50%{opacity:1;transform:scaleY(1)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 
+/* MARQUEE */
 .marquee-section{padding:2.5rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);overflow:hidden}
 .marquee-track{display:flex;animation:marquee 30s linear infinite;width:max-content}
 .marquee-track:hover{animation-play-state:paused}
 @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .skill-pill{display:inline-flex;align-items:center;gap:0.5rem;padding:0.5rem 1.2rem;border:1px solid var(--border);border-radius:4px;font-size:0.8rem;color:var(--muted);white-space:nowrap;margin-right:0.75rem;background:var(--surface);transition:all 0.2s}
 .skill-pill:hover{border-color:var(--accent);color:var(--accent);background:rgba(0,212,255,0.05)}
-.dot-c{width:5px;height:5px;border-radius:50%;background:var(--accent);flex-shrink:0}
-.dot-g{width:5px;height:5px;border-radius:50%;background:var(--green);flex-shrink:0}
-.dot-o{width:5px;height:5px;border-radius:50%;background:var(--orange);flex-shrink:0}
+.dc{width:5px;height:5px;border-radius:50%;background:var(--accent);flex-shrink:0}
+.dg{width:5px;height:5px;border-radius:50%;background:var(--green);flex-shrink:0}
+.do{width:5px;height:5px;border-radius:50%;background:var(--orange);flex-shrink:0}
 
+/* SECTIONS */
 section{padding:7rem 4rem}
 .section-label{font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:1rem;display:flex;align-items:center;gap:0.75rem}
 .section-label::before{content:'';width:28px;height:1px;background:var(--accent)}
 .section-title{font-family:var(--font-display);font-size:clamp(2rem,4vw,3.5rem);font-weight:800;letter-spacing:-0.02em;line-height:1.1;margin-bottom:1.5rem}
+.grad-text{background:linear-gradient(90deg,var(--accent),var(--green) 60%,var(--yellow));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 
+/* PROJECTS */
 .projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:3rem}
 .project-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:2rem;position:relative;overflow:hidden;transition:border-color 0.3s,transform 0.3s;cursor:none}
 .project-card::before{content:'';position:absolute;inset:0;background:radial-gradient(500px circle at var(--mx,50%) var(--my,50%),rgba(0,212,255,0.05),transparent 40%);opacity:0;transition:opacity 0.3s;pointer-events:none}
@@ -123,7 +127,7 @@ section{padding:7rem 4rem}
 .metric-label{font-size:0.67rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em}
 .project-link{display:inline-flex;align-items:center;gap:0.5rem;color:var(--accent);font-size:0.78rem;font-weight:500;text-decoration:none;border:1px solid rgba(0,212,255,0.25);padding:0.4rem 1rem;border-radius:4px;transition:all 0.2s}
 .project-link:hover{background:rgba(0,212,255,0.08);border-color:var(--accent);box-shadow:0 0 16px rgba(0,212,255,0.2)}
-.project-visual{border-radius:8px;overflow:hidden;height:100%;min-height:220px;background:var(--surface2);display:flex;align-items:center;justify-content:center;position:relative;border:1px solid var(--border)}
+.project-visual{border-radius:8px;overflow:hidden;height:100%;min-height:220px;background:var(--surface2);display:flex;align-items:center;justify-content:center;border:1px solid var(--border)}
 .chart-wrap{display:flex;align-items:flex-end;gap:7px;height:140px;padding:1.25rem}
 .bar{border-radius:3px 3px 0 0;animation:growBar 1.2s cubic-bezier(0.34,1.56,0.64,1) both}
 @keyframes growBar{from{transform:scaleY(0);transform-origin:bottom}to{transform:scaleY(1);transform-origin:bottom}}
@@ -137,6 +141,13 @@ section{padding:7rem 4rem}
 .post{background:rgba(0,255,136,0.12);color:var(--green)}
 .del{background:rgba(255,107,0,0.15);color:var(--orange)}
 
+/* DA BOTTOM */
+.da-bottom{background:linear-gradient(135deg,rgba(0,212,255,0.04),rgba(0,255,136,0.02));border:1px solid rgba(0,212,255,0.12);border-radius:16px;padding:4rem;margin-top:3rem;text-align:center}
+.da-stats{display:flex;justify-content:center;gap:4rem;margin:2rem 0 2.5rem}
+.da-stat-val{font-family:var(--font-display);font-size:2.2rem;font-weight:800;display:block;color:var(--accent);text-shadow:0 0 24px rgba(0,212,255,0.3)}
+.da-stat-label{font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em}
+
+/* ABOUT */
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
 .about-text p{color:var(--muted);font-size:1rem;line-height:1.82;font-weight:300;margin-bottom:1.5rem}
 .about-text p strong{color:var(--text);font-weight:500}
@@ -151,6 +162,7 @@ section{padding:7rem 4rem}
 .about-card h4{font-family:var(--font-display);font-size:0.9rem;font-weight:700;margin-bottom:0.25rem}
 .about-card p{font-size:0.8rem;color:var(--muted);line-height:1.5;margin:0}
 
+/* SKILLS */
 .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
 .skill-group{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.75rem;transition:border-color 0.3s}
 .skill-group:hover{border-color:rgba(0,212,255,0.2)}
@@ -166,6 +178,7 @@ section{padding:7rem 4rem}
 .bg2{background:var(--green);box-shadow:0 0 6px rgba(0,255,136,0.4)}
 .bo2{background:var(--orange)}
 
+/* MODAL */
 #contact-modal{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s}
 #contact-modal.open{opacity:1;pointer-events:all}
 .modal-backdrop{position:absolute;inset:0;background:rgba(5,8,15,0.92);backdrop-filter:blur(20px)}
@@ -176,7 +189,7 @@ section{padding:7rem 4rem}
 .modal-close:hover{background:rgba(255,107,0,0.12);color:var(--orange);border-color:rgba(255,107,0,0.3)}
 .modal-avatar{width:60px;height:60px;border-radius:10px;background:linear-gradient(135deg,var(--accent2),var(--accent));display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:1.3rem;font-weight:800;color:#05080f;margin-bottom:1.5rem;box-shadow:0 0 24px rgba(0,212,255,0.3)}
 .modal-name{font-family:var(--font-display);font-size:1.7rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:0.2rem;color:var(--text)}
-.modal-role{font-size:0.83rem;color:var(--muted);margin-bottom:2rem}
+.modal-role-text{font-size:0.83rem;color:var(--muted);margin-bottom:2rem}
 .modal-links{display:flex;flex-direction:column;gap:0.75rem}
 .modal-link{display:flex;align-items:center;gap:1rem;padding:0.9rem 1.1rem;background:var(--surface2);border:1px solid var(--border);border-radius:10px;text-decoration:none;color:var(--text);transition:all 0.2s;cursor:none}
 .modal-link:hover{border-color:rgba(0,212,255,0.3);background:rgba(0,212,255,0.04);transform:translateX(4px)}
@@ -189,12 +202,6 @@ section{padding:7rem 4rem}
 .modal-link-value{font-size:0.88rem;font-weight:500;color:var(--text)}
 .modal-avail{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(0,255,136,0.08);border:1px solid rgba(0,255,136,0.2);color:var(--green);padding:0.4rem 1rem;border-radius:4px;font-size:0.75rem;font-weight:500;margin-top:1.5rem}
 .pulse-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite;box-shadow:0 0 8px var(--green)}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
-
-.da-bottom{background:linear-gradient(135deg,rgba(0,212,255,0.04),rgba(0,255,136,0.02));border:1px solid rgba(0,212,255,0.12);border-radius:16px;padding:4rem;margin-top:3rem;text-align:center}
-.da-stats{display:flex;justify-content:center;gap:4rem;margin:2rem 0 2.5rem}
-.da-stat-val{font-family:var(--font-display);font-size:2.2rem;font-weight:800;display:block;color:var(--accent);text-shadow:0 0 24px rgba(0,212,255,0.3)}
-.da-stat-label{font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em}
 
 footer{padding:3rem 4rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
 footer p{color:var(--muted);font-size:0.78rem}
@@ -212,13 +219,14 @@ footer p{color:var(--muted);font-size:0.78rem}
 <div id="cursor-dot"></div>
 <div id="cursor-ring"></div>
 
+<!-- MODAL -->
 <div id="contact-modal" role="dialog" aria-modal="true">
   <div class="modal-backdrop" id="modal-backdrop"></div>
   <div class="modal-box">
     <button class="modal-close" id="modal-close">×</button>
     <div class="modal-avatar">DK</div>
     <div class="modal-name">Dhruv Kumar</div>
-    <div class="modal-role">Software Engineer & Data Analyst · Dehradun, India</div>
+    <div class="modal-role-text">Software Engineer & Data Analyst · Dehradun, India</div>
     <div class="modal-links">
       <a href="mailto:dhruvkumar.grow@gmail.com" class="modal-link">
         <div class="modal-link-icon li-c"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div>
@@ -236,17 +244,14 @@ footer p{color:var(--muted);font-size:0.78rem}
         <div class="modal-link-icon li-y"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#ffd100" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></div>
         <div><span class="modal-link-label">GitHub</span><span class="modal-link-value">github.com/dhruvkumargrow-cyber</span></div>
       </a>
-      <a href="https://github.com/dhruvkumargrow-cyber" target="_blank" class="modal-link">
-        <div class="modal-link-icon li-c"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
-        <div><span class="modal-link-label">Portfolio / Resume</span><span class="modal-link-value">View projects on GitHub ↗</span></div>
-      </a>
     </div>
     <div class="modal-avail"><span class="pulse-dot"></span>Available immediately · Full-time roles</div>
   </div>
 </div>
 
+<!-- NAV -->
 <nav>
-  <span class="nav-logo">DK</span>
+  <span class="nav-logo">DK / Portfolio</span>
   <ul class="nav-links">
     <li><a href="#projects">Work</a></li>
     <li><a href="#about">About</a></li>
@@ -255,6 +260,7 @@ footer p{color:var(--muted);font-size:0.78rem}
   <button class="nav-cta" id="nav-contact-btn">Get in touch</button>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
   <div class="hero-bg">
     <div class="grid-overlay"></div>
@@ -262,65 +268,79 @@ footer p{color:var(--muted);font-size:0.78rem}
     <div class="orb orb2"></div>
     <div class="orb orb3"></div>
   </div>
-  <div class="hero-role">
-    <span class="role-badge badge-swe">Software Engineer</span>
-    <span class="role-dot"></span>
-    <span class="role-badge badge-da">Data Analyst</span>
+
+  <div class="hero-eyebrow">
+    <span class="hero-eyebrow-dot"></span>
+    Available for full-time roles
   </div>
-  <h1 class="hero-title">
-    <span class="line"><span>Build fast.</span></span>
-    <span class="line"><span>Analyse deep.</span></span>
-    <span class="line"><span class="grad-text">Ship real.</span></span>
+
+  <h1 class="hero-name">
+    <span class="first">Dhruv</span>
+    <span class="last">Kumar</span>
   </h1>
-  <p class="hero-subtitle">I engineer backend systems and analytics pipelines — from REST APIs with CI/CD to dashboards that turn 110K+ transactions into decisions with measurable revenue impact.</p>
-  <div class="hero-actions">
-    <a href="#projects" class="btn-primary">View my work <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-    <button class="btn-outline" id="hero-contact-btn">Get in touch</button>
+
+  <div class="hero-roles">
+    <span class="hero-role-text role-cyan">Backend Engineer</span>
+    <span class="role-divider"></span>
+    <span class="hero-role-text role-green">Data Analyst</span>
   </div>
+
+  <p class="hero-desc">I build REST APIs that run in production and analytics pipelines that turn raw data into revenue decisions. 4 deployed projects. Available immediately.</p>
+
+  <div class="hero-actions">
+    <a href="#projects" class="btn-primary">See my work <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <button class="btn-ghost" id="hero-contact-btn">Get in touch</button>
+  </div>
+
   <div class="hero-stats">
     <div class="stat"><span class="stat-num" data-target="110">0</span><span class="stat-suf">K+</span><span class="stat-label">Transactions analysed</span></div>
     <div class="stat"><span class="stat-num" data-target="4">0</span><span class="stat-suf"></span><span class="stat-label">Live projects</span></div>
+    <div class="stat"><span class="stat-num" data-target="20">0</span><span class="stat-suf">%</span><span class="stat-label">Max revenue impact</span></div>
     <div class="stat"><span class="stat-num" data-target="768">0</span><span class="stat-suf">/10</span><span class="stat-label">CGPA</span></div>
   </div>
-  <div class="scroll-hint"><div class="scroll-line"></div>Scroll to explore</div>
+
+  <div class="scroll-indicator">
+    <div class="scroll-arrow"></div>
+    Scroll
+  </div>
 </section>
 
+<!-- MARQUEE -->
 <div class="marquee-section">
   <div class="marquee-track">
-    <span class="skill-pill"><span class="dot-c"></span>Python</span>
-    <span class="skill-pill"><span class="dot-g"></span>SQL & PostgreSQL</span>
-    <span class="skill-pill"><span class="dot-o"></span>Flask REST APIs</span>
-    <span class="skill-pill"><span class="dot-c"></span>Power BI & DAX</span>
-    <span class="skill-pill"><span class="dot-g"></span>Pandas & NumPy</span>
-    <span class="skill-pill"><span class="dot-o"></span>AWS Cloud</span>
-    <span class="skill-pill"><span class="dot-c"></span>TimescaleDB</span>
-    <span class="skill-pill"><span class="dot-g"></span>JWT Authentication</span>
-    <span class="skill-pill"><span class="dot-o"></span>GitHub Actions CI/CD</span>
-    <span class="skill-pill"><span class="dot-c"></span>Streamlit</span>
-    <span class="skill-pill"><span class="dot-g"></span>Statistical Analysis</span>
-    <span class="skill-pill"><span class="dot-o"></span>Plotly</span>
-    <span class="skill-pill"><span class="dot-c"></span>Python</span>
-    <span class="skill-pill"><span class="dot-g"></span>SQL & PostgreSQL</span>
-    <span class="skill-pill"><span class="dot-o"></span>Flask REST APIs</span>
-    <span class="skill-pill"><span class="dot-c"></span>Power BI & DAX</span>
-    <span class="skill-pill"><span class="dot-g"></span>Pandas & NumPy</span>
-    <span class="skill-pill"><span class="dot-o"></span>AWS Cloud</span>
-    <span class="skill-pill"><span class="dot-c"></span>TimescaleDB</span>
-    <span class="skill-pill"><span class="dot-g"></span>JWT Authentication</span>
-    <span class="skill-pill"><span class="dot-o"></span>GitHub Actions CI/CD</span>
-    <span class="skill-pill"><span class="dot-c"></span>Streamlit</span>
-    <span class="skill-pill"><span class="dot-g"></span>Statistical Analysis</span>
-    <span class="skill-pill"><span class="dot-o"></span>Plotly</span>
+    <span class="skill-pill"><span class="dc"></span>Python</span>
+    <span class="skill-pill"><span class="dg"></span>SQL & PostgreSQL</span>
+    <span class="skill-pill"><span class="do"></span>Flask REST APIs</span>
+    <span class="skill-pill"><span class="dc"></span>Power BI & DAX</span>
+    <span class="skill-pill"><span class="dg"></span>Pandas & NumPy</span>
+    <span class="skill-pill"><span class="do"></span>AWS Cloud</span>
+    <span class="skill-pill"><span class="dc"></span>TimescaleDB</span>
+    <span class="skill-pill"><span class="dg"></span>JWT Authentication</span>
+    <span class="skill-pill"><span class="do"></span>GitHub Actions CI/CD</span>
+    <span class="skill-pill"><span class="dc"></span>Streamlit</span>
+    <span class="skill-pill"><span class="dg"></span>Statistical Analysis</span>
+    <span class="skill-pill"><span class="do"></span>Plotly</span>
+    <span class="skill-pill"><span class="dc"></span>Python</span>
+    <span class="skill-pill"><span class="dg"></span>SQL & PostgreSQL</span>
+    <span class="skill-pill"><span class="do"></span>Flask REST APIs</span>
+    <span class="skill-pill"><span class="dc"></span>Power BI & DAX</span>
+    <span class="skill-pill"><span class="dg"></span>Pandas & NumPy</span>
+    <span class="skill-pill"><span class="do"></span>AWS Cloud</span>
+    <span class="skill-pill"><span class="dc"></span>TimescaleDB</span>
+    <span class="skill-pill"><span class="dg"></span>JWT Authentication</span>
+    <span class="skill-pill"><span class="do"></span>GitHub Actions CI/CD</span>
+    <span class="skill-pill"><span class="dc"></span>Streamlit</span>
+    <span class="skill-pill"><span class="dg"></span>Statistical Analysis</span>
+    <span class="skill-pill"><span class="do"></span>Plotly</span>
   </div>
 </div>
 
+<!-- PROJECTS -->
 <section id="projects">
   <div class="section-label">Selected work</div>
   <h2 class="section-title reveal">Projects that ship<br>and keep running.</h2>
-
   <div class="projects-grid">
 
-    <!-- SWE Featured -->
     <div class="project-card swe-card featured reveal">
       <div>
         <div class="proj-type swe">Software Engineering</div>
@@ -349,7 +369,6 @@ footer p{color:var(--muted);font-size:0.78rem}
       </div>
     </div>
 
-    <!-- Task Manager -->
     <div class="project-card swe-card reveal">
       <div class="proj-type swe">Software Engineering</div>
       <div class="project-num">02 — Backend</div>
@@ -365,7 +384,6 @@ footer p{color:var(--muted);font-size:0.78rem}
       <a href="https://github.com/dhruvkumargrow-cyber" target="_blank" class="project-link">View on GitHub ↗</a>
     </div>
 
-    <!-- E-Commerce DA Featured -->
     <div class="project-card featured reveal">
       <div>
         <div class="proj-type da">Data Analytics</div>
@@ -398,7 +416,6 @@ footer p{color:var(--muted);font-size:0.78rem}
       </div>
     </div>
 
-    <!-- IoT -->
     <div class="project-card reveal">
       <div class="proj-type da">Data Analytics</div>
       <div class="project-num">04 — Cloud Analytics</div>
@@ -430,6 +447,7 @@ footer p{color:var(--muted);font-size:0.78rem}
   </div>
 </section>
 
+<!-- ABOUT -->
 <section id="about">
   <div class="about-grid">
     <div class="about-text reveal">
@@ -448,6 +466,7 @@ footer p{color:var(--muted);font-size:0.78rem}
   </div>
 </section>
 
+<!-- SKILLS -->
 <section id="skills">
   <div class="section-label">Technical skills</div>
   <h2 class="section-title reveal">Full-stack data<br>engineering toolkit.</h2>
@@ -480,7 +499,7 @@ footer p{color:var(--muted);font-size:0.78rem}
 </section>
 
 <footer>
-  <p>© 2026 Dhruv Kumar — Software Engineer & Data Analyst</p>
+  <p>© 2026 Dhruv Kumar — Backend Engineer & Data Analyst</p>
   <p>Dehradun, Uttarakhand · Available immediately</p>
 </footer>
 
